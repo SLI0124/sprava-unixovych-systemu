@@ -142,8 +142,9 @@ cat /proc/version
 
 Pokud vše dopadlo dobře, měli bychom vidět náš login na konci názvu kernelu. Například:
 
-```plaintext
-TODO
+```bash
+sli0124@debbie:~$ cat /proc/version 
+Linux version 6.16.9_sli0124 (root@debbie) (gcc (Debian 14.2.0-19) 14.2.0, GNU ld (GNU Binutils for Debian) 2.44) #1 SMP PREEMPT_DYNAMIC Thu Sep 25 20:40:03 CEST 2025
 ```
 
 ## Poznámka ke závěrečnému testu: Ramdisk, initramfs a initrd
