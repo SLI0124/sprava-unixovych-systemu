@@ -1,34 +1,34 @@
 # Cvičení 1: Instalace GNU/Debian
 
-První  cvičení je zaměřeno na instalaci operačního systému GNU/Debian skrze virtuální stroj [VirtualBox](https://www.virtualbox.org/). Dále potřebujeme instalační obraz [Debianu](https://www.debian.org/).
+První  cvičení je zaměřeno na instalaci operačního systému **GNU/Debian** skrze virtuální stroj [VirtualBox](https://www.virtualbox.org/). Dále potřebujeme instalační obraz [Debianu](https://www.debian.org/).
 
 ## Krok 1: příprava prostředí VirtualBox
 
-Ještě než začneme s instalací Debianu, je potřeba přidat do VirtualBoxu další síťový adaptér, který nám umožní se připojit na virtuální stroj skrze SSH.
+Ještě než začneme s instalací Debianu, je potřeba přidat do VirtualBoxu další síťový adaptér, který nám umožní se připojit na virtuální stroj skrze **SSH**.
 
-1. Otevřete VirtualBox a v nastavení najděte sekci "Síť" (Network). Momentálně tam nebude žádný adaptér. Přidejte nový a měla by se vytvořit síťová karta "vboxnet0".
-2. Zpátky v sekci pro stroje přidejte nový virtuální stroj. Pojemnujte si jej třeba Debian a číslo cvičením. Nezadávejte ještě instalační médium. Jen si ho pojmenujte a přejděte dále na nastavení hardwaru.
+1. Otevřete VirtualBox a v nastavení najděte sekci **"Síť" (Network)**. Momentálně tam nebude žádný adaptér. Přidejte nový a měla by se vytvořit síťová karta **"vboxnet0"**.
+2. Zpátky v sekci pro stroje přidejte nový virtuální stroj. Pojemnujte si jej třeba **Debian a číslo cvičením**. Nezadávejte ještě instalační médium. Jen si ho pojmenujte a přejděte dále na nastavení hardwaru.
 3. Jelikož to bude jen server s příkazovou řádkou, nemusíme mu dávat moc paměti. Nechte tu hodnotu, na kterou to VirtualBox navrhuje a možná dvakrát více. Procesor jsem nastavil jeden a neměl jsem nikdy problém.
-4. V poslední sekci "Úložiště" se vytvoří virtuální disk. Základní velikost doporučuji zvednout na alespoň 30GB, klidně i více. Tento disk okamžitě nezabared daných 30GB, ale bude používat jen to místo, které potřebuje. Nezaškrtněte předem alokaci celého disku. To by potom těch X GB zabralo hned. Další cvičení nejde udělat s 20GB diskem, tak doporučuji se tomu hned vyhnout a zadat rovnou 30GB a více.
-5. Potvrďte výběr a dostanete se zpět do hlavního okna VirtualBoxu. Nyní je potřeba přidat síťový adaptér, který jsme si na začátku vytvořili. Otevřete nastavení stroje a přejděte do sekce "Síť". Zde povolte druhý adaptér a jako typ připojení zvolte "Připojeno k síti hostitele" (Host-only Adapter). Jako název vyberte "vboxnet0". To je základní pojmenování.
-6. Spusťte virtuální stroj. Vyskočí na vás okno, že není připojeno žádné médium. To je v pořádku. Vyberte instalační ISO obraz Debianu, který jste si stáhli a připojte jej jako virtuální CD/DVD mechaniku. Potvrďte a můžeme začít s instalací.
+4. V poslední sekci **"Úložiště"** se vytvoří virtuální disk. Základní velikost doporučuji zvednout na alespoň **30GB**, klidně i více. Tento disk okamžitě nezabared daných 30GB, ale bude používat jen to místo, které potřebuje. **Nezaškrtněte předem alokaci celého disku.** To by potom těch X GB zabralo hned. Další cvičení nejde udělat s 20GB diskem, tak doporučuji se tomu hned vyhnout a zadat rovnou **30GB a více**.
+5. Potvrďte výběr a dostanete se zpět do hlavního okna VirtualBoxu. Nyní je potřeba přidat síťový adaptér, který jsme si na začátku vytvořili. Otevřete nastavení stroje a přejděte do sekce **"Síť"**. Zde povolte druhý adaptér a jako typ připojení zvolte **"Připojeno k síti hostitele" (Host-only Adapter)**. Jako název vyberte **"vboxnet0"**. To je základní pojmenování.
+6. Spusťte virtuální stroj. Vyskočí na vás okno, že není připojeno žádné médium. To je v pořádku. Vyberte instalační **ISO obraz Debianu**, který jste si stáhli a připojte jej jako virtuální CD/DVD mechaniku. Potvrďte a můžeme začít s instalací.
 
 ## Krok 2: Instalace Debianu
 
-Instalace sama o sobě není složitá. Vyberte si jazyk, zemi, klávesnici dle své preference a pokračujte dále. Většina voleb zůstává výchozích, takže vše odentrujte. Bacha na to, že Tab, Enter a Space fungují jinak než v běžném prostředí. Tabem se přepínáte mezi položkami, Enter volbu potvrdí a Space zaškrtí/odškrtí volbu.
+Instalace sama o sobě není složitá. Vyberte si jazyk, zemi, klávesnici dle své preference a pokračujte dále. Většina voleb zůstává výchozích, takže vše odentrujte. Bacha na to, že **Tab**, **Enter** a **Space** fungují jinak než v běžném prostředí. Tabem se přepínáte mezi položkami, Enter volbu potvrdí a Space zaškrtí/odškrtí volbu.
 
 Jak jsem říkal, vše nechte na výchozích hodnotách. Jen na třech místech je potřeba zasáhnout:
 
-1. V sekcci "Write changes to disks" je základní volba Ne. Jen vyberte Ano a pokračujte.
-2. Při výběru softwaru, který chcete nainstalovat, zvolte "SSH server". To nám umožní se na stroj připojit vzdáleně. Dále můžete zvolit "standardní systémové nástroje", ale není to nutné. Já si je vždy přidám, protože to ušetři spoustu instalovaní a času na příkazy, na které jsem dávno zvyklý.
-Ve stejné sekci zrušte volbu "Desktop environment" a "GNOME". Nemá smysl instalovat grafické prostředí na server, který bude běžet v příkazové řádce.
-3. Poslední volba je instalace GRUB bootloaderu. Zvolte Ano a jako zařízení pro instalaci vyberte primární disk, který jsme vytvořili na začátku. V mém případě to byl /dev/sda.
+1. V sekcci **"Write changes to disks"** je základní volba **Ne**. Jen vyberte **Ano** a pokračujte.
+2. Při výběru softwaru, který chcete nainstalovat, zvolte **"SSH server"**. To nám umožní se na stroj připojit vzdáleně. Dále můžete zvolit **"standardní systémové nástroje"**, ale není to nutné. Já si je vždy přidám, protože to ušetři spoustu instalovaní a času na příkazy, na které jsem dávno zvyklý.
+Ve stejné sekci **zrušte volbu "Desktop environment" a "GNOME"**. Nemá smysl instalovat grafické prostředí na server, který bude běžet v příkazové řádce.
+3. Poslední volba je instalace **GRUB bootloaderu**. Zvolte **Ano** a jako zařízení pro instalaci vyberte **primární disk**, který jsme vytvořili na začátku. V mém případě to byl `/dev/sda`.
 
 To by mělo být vše. Nabídne se vám restart a můžete se přihlásit do svého nového Debianu.
 
 ## Krok 3: Připojení přes SSH
 
-Nyní je potřeba zjistit IP adresu, kterou nám přidělil VirtualBox. To zjistíme příkazem:
+Nyní je potřeba zjistit **IP adresu**, kterou nám přidělil VirtualBox. To zjistíme příkazem:
 
 ```bash
 ip add
@@ -58,9 +58,9 @@ sli0124@debbie:~$ ip add
     altname enx0800279e6b65
 ```
 
-1. Loopback je interní adresa, kterou nebudeme potřebovat.  
-2. Druhý adaptér (enp0s3) je ten, který nám umožňuje přístup na internet skrze NAT. Ten také nebudeme potřebovat.
-3. Nás zajímá třetí adaptér (enp0s8), který nám přidělil VirtualBox. V mém případě je to adresa `enp0s8` Abychom se na stroj mohl připojit, musíme říct SSH klientovi, aby použil tento adaptér. Na to potřebujeme doinstalovat balíčeky:
+1. **Loopback** je interní adresa, kterou nebudeme potřebovat.  
+2. Druhý adaptér (**enp0s3**) je ten, který nám umožňuje přístup na internet skrze NAT. Ten také nebudeme potřebovat.
+3. Nás zajímá **třetí adaptér (enp0s8)**, který nám přidělil VirtualBox. V mém případě je to adresa `enp0s8` Abychom se na stroj mohl připojit, musíme říct SSH klientovi, aby použil tento adaptér. Na to potřebujeme doinstalovat balíčeky:
 
 ```bash
 su                          # přepnutí na root uživatele
@@ -103,23 +103,23 @@ sli0124@debbie:~$ ip add
        valid_lft forever preferred_lft forever
 ```
 
-Všimnete si řádku s `enp0s8`, kde je nová IP adresa. V mém případě je to `192.168.56.104`. Tuto adresu si zapamatujte, protože ji budeme potřebovat pro připojení. Na nativním počítači spusťte terminál a zadejte:
+Všimnete si řádku s **`enp0s8`**, kde je nová **IP adresa**. V mém případě je to **`192.168.56.104`**. Tuto adresu si zapamatujte, protože ji budeme potřebovat pro připojení. Na nativním počítači spusťte terminál a zadejte:
 
 ```bash
 ssh <VÁŠ_LOGIN>@<IP_ADRESA_NA_INTERFACE_ENP0S8>
 ```
 
-Kde `<VÁŠ_LOGIN>` je uživatelské jméno, které jste si vytvořili při instalaci Debianu a `<IP_ADRESA_NA_INTERFACE_ENP0S8>` je IP adresa, kterou jste získali pro adaptér `enp0s8`. Po zadání příkazu se vás terminál zeptá, zda chcete přidat klíč do známých hostů. Odpovězte "yes" a pokračujte. Následně budete vyzváni k zadání hesla. Zadejte heslo, které jste si vytvořili při instalaci.
+Kde **`<VÁŠ_LOGIN>`** je uživatelské jméno, které jste si vytvořili při instalaci Debianu a **`<IP_ADRESA_NA_INTERFACE_ENP0S8>`** je IP adresa, kterou jste získali pro adaptér `enp0s8`. Po zadání příkazu se vás terminál zeptá, zda chcete přidat klíč do známých hostů. Odpovězte **"yes"** a pokračujte. Následně budete vyzváni k zadání hesla. Zadejte heslo, které jste si vytvořili při instalaci.
 
-A jste přihlášeni na svůj nový Debian server! Máme hotovo. Tuto instanci budeme používat v dalších cvičeních skrze klonování, takže si ji neodstraňujte.
+A jste přihlášeni na svůj nový Debian server! Máme hotovo. Tuto instanci budeme používat v dalších cvičeních skrze klonování, takže si ji **neodstraňujte**.
 
-Prvním úkolem bývá vypsání rootovského adresáře skrze SSH v terminálu nativního počítače. Děláme to tak, protože kopírovat a vkládat do virtuálního stroje nejde out of the box. Navíc pokud máte někde server, tak je vysoce pravděpodobné, že budete v něm pracovat skrze vzdálený terminál.Výsledek zobrazíte příkazem:
+Prvním úkolem bývá vypsání rootovského adresáře skrze SSH v terminálu nativního počítače. Děláme to tak, protože kopírovat a vkládat do virtuálního stroje nejde out of the box. Navíc pokud máte někde server, tak je vysoce pravděpodobné, že budete v něm pracovat skrze vzdálený terminál. Výsledek zobrazíte příkazem:
 
 ```bash
 sudo ls -la /
 ```
 
-To lomítko je důležité, protože znamená kořenový adresář. Bez něj byste vypsali obsah vašeho domovského adresáře. Výsledek by měl vypadat nějak takto:
+To **lomítko** je důležité, protože znamená **kořenový adresář**. Bez něj byste vypsali obsah vašeho domovského adresáře. Výsledek by měl vypadat nějak takto:
 
 ```plaintext
 sli0124@debbie:~$ ls -la /
@@ -154,11 +154,8 @@ lrwxrwxrwx   1 root root    32 Sep 25 08:52 vmlinuz.old -> boot/vmlinuz-6.12.43+
 
 ## Poznámka
 
-Spuštění příkazu `dhclient enp0s8` je potřeba po každém restartu virtuálního stroje, protože to v paměti nastavané a ne pernamentně skrze konfigurační soubor. Pokud byste chtěli, aby se IP adresa přidělovala automaticky při startu, je potřeba upravit konfigurační soubor sítě v souboru `/etc/network/interfaces` a přidat tam:
+Spuštění příkazu `dhclient enp0s8` je potřeba po každém restartu virtuálního stroje, protože to v paměti nastavané a ne pernamentně skrze konfigurační soubor. Pokud byste chtěli, aby se IP adresa přidělovala automaticky při startu, je potřeba upravit konfigurační soubor sítě v souboru **`/etc/network/interfaces`** a přidat tam:
 
-```plaintext
-auto enp0s8
-iface enp0s8 inet dhcp
 ```plaintext
 auto enp0s8
 iface enp0s8 inet dhcp
