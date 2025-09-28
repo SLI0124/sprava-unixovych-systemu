@@ -108,11 +108,7 @@ Moduly musíme taktéž zkompilovat. To provedeme příkazem:
 make modules -j $(( $(nproc) * 2 ))
 ```
 
-<<<<<<< HEAD
 A jejich instalaci pomocí:
-=======
-Následně je nainstalujeme pomocí:
->>>>>>> 59552b3 (docs(task02): split making and installation of kernel modules)
 
 ```bash
 make modules_install
