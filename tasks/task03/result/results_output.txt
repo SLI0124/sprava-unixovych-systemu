@@ -1,0 +1,160 @@
+============================================
+ Testing algorithm=md5, level=1
+--------------------------------------------
+Result: bea8252ff4e80f41719ea13cdf007273
+[ 1421.221114] Checksum module loaded: algorithm=md5, level=1
+[ 1422.233461] Checksum buffer updated: Hello, World!
+
+
+============================================
+ Testing algorithm=md5, level=32
+--------------------------------------------
+Result: bea8252ff4e80f41719ea13cdf007273
+[ 1424.332262] Checksum module loaded: algorithm=md5, level=32
+[ 1425.342736] Checksum buffer updated: Hello, World!
+
+
+============================================
+ Testing algorithm=md5, level=64
+--------------------------------------------
+Result: bea8252ff4e80f41719ea13cdf007273
+[ 1427.450405] Checksum module loaded: algorithm=md5, level=64
+[ 1428.465552] Checksum buffer updated: Hello, World!
+
+
+============================================
+ Testing algorithm=md5, level=128
+--------------------------------------------
+Result: bea8252ff4e80f41719ea13cdf007273
+[ 1430.565012] Checksum module loaded: algorithm=md5, level=128
+[ 1431.577658] Checksum buffer updated: Hello, World!
+
+
+============================================
+ Testing algorithm=sha1, level=1
+--------------------------------------------
+Result: 60fde9c2310b0d4cad4dab8d126b04387efba289
+[ 1433.683520] Checksum module loaded: algorithm=sha1, level=1
+[ 1434.693108] Checksum buffer updated: Hello, World!
+
+
+============================================
+ Testing algorithm=sha1, level=32
+--------------------------------------------
+Result: 60fde9c2310b0d4cad4dab8d126b04387efba289
+[ 1436.803944] Checksum module loaded: algorithm=sha1, level=32
+[ 1437.818472] Checksum buffer updated: Hello, World!
+
+
+============================================
+ Testing algorithm=sha1, level=64
+--------------------------------------------
+Result: 60fde9c2310b0d4cad4dab8d126b04387efba289
+[ 1439.908301] Checksum module loaded: algorithm=sha1, level=64
+[ 1440.917817] Checksum buffer updated: Hello, World!
+
+
+============================================
+ Testing algorithm=sha1, level=128
+--------------------------------------------
+Result: 60fde9c2310b0d4cad4dab8d126b04387efba289
+[ 1443.015459] Checksum module loaded: algorithm=sha1, level=128
+[ 1444.024956] Checksum buffer updated: Hello, World!
+
+
+============================================
+ Testing algorithm=sha256, level=1
+--------------------------------------------
+Result: c98c24b677eff44860afea6f493bbaec5bb1c4cbb209c6fc2bbb47f66ff2ad31
+[ 1446.119596] Checksum module loaded: algorithm=sha256, level=1
+[ 1447.127511] Checksum buffer updated: Hello, World!
+
+
+============================================
+ Testing algorithm=sha256, level=32
+--------------------------------------------
+Result: c98c24b677eff44860afea6f493bbaec5bb1c4cbb209c6fc2bbb47f66ff2ad31
+[ 1449.230605] Checksum module loaded: algorithm=sha256, level=32
+[ 1450.240825] Checksum buffer updated: Hello, World!
+
+
+============================================
+ Testing algorithm=sha256, level=64
+--------------------------------------------
+Result: c98c24b677eff44860afea6f493bbaec5bb1c4cbb209c6fc2bbb47f66ff2ad31
+[ 1452.340470] Checksum module loaded: algorithm=sha256, level=64
+[ 1453.349866] Checksum buffer updated: Hello, World!
+
+
+============================================
+ Testing algorithm=sha256, level=128
+--------------------------------------------
+Result: c98c24b677eff44860afea6f493bbaec5bb1c4cbb209c6fc2bbb47f66ff2ad31
+[ 1455.449742] Checksum module loaded: algorithm=sha256, level=128
+[ 1456.461072] Checksum buffer updated: Hello, World!
+
+
+============================================
+ Testing algorithm=sha512, level=1
+--------------------------------------------
+Result: 921618bc6d9f8059437c5e0397b13f973ab7c7a7b81f0ca31b70bf448fd800a460b67efda0020088bc97bf7d9da97a9e2ce7b20d46e066462ec44cf60284f9a7
+[ 1458.565602] Checksum module loaded: algorithm=sha512, level=1
+[ 1459.578348] Checksum buffer updated: Hello, World!
+
+
+============================================
+ Testing algorithm=sha512, level=32
+--------------------------------------------
+Result: 921618bc6d9f8059437c5e0397b13f973ab7c7a7b81f0ca31b70bf448fd800a460b67efda0020088bc97bf7d9da97a9e2ce7b20d46e066462ec44cf60284f9a7
+[ 1461.688848] Checksum module loaded: algorithm=sha512, level=32
+[ 1462.698315] Checksum buffer updated: Hello, World!
+
+
+============================================
+ Testing algorithm=sha512, level=64
+--------------------------------------------
+Result: 921618bc6d9f8059437c5e0397b13f973ab7c7a7b81f0ca31b70bf448fd800a460b67efda0020088bc97bf7d9da97a9e2ce7b20d46e066462ec44cf60284f9a7
+[ 1464.800346] Checksum module loaded: algorithm=sha512, level=64
+[ 1465.809758] Checksum buffer updated: Hello, World!
+
+
+============================================
+ Testing algorithm=sha512, level=128
+--------------------------------------------
+Result: 921618bc6d9f8059437c5e0397b13f973ab7c7a7b81f0ca31b70bf448fd800a460b67efda0020088bc97bf7d9da97a9e2ce7b20d46e066462ec44cf60284f9a7
+[ 1467.913241] Checksum module loaded: algorithm=sha512, level=128
+[ 1468.927281] Checksum buffer updated: Hello, World!
+
+
+============================================
+ Testing algorithm=xor, level=1
+--------------------------------------------
+Result: 48
+[ 1471.014986] Checksum module loaded: algorithm=xor, level=1
+[ 1472.023342] Checksum buffer updated: Hello, World!
+
+
+============================================
+ Testing algorithm=xor, level=32
+--------------------------------------------
+Result: 27
+[ 1474.121645] Checksum module loaded: algorithm=xor, level=32
+[ 1475.129578] Checksum buffer updated: Hello, World!
+
+
+============================================
+ Testing algorithm=xor, level=64
+--------------------------------------------
+Result: 27
+[ 1477.237681] Checksum module loaded: algorithm=xor, level=64
+[ 1478.248836] Checksum buffer updated: Hello, World!
+
+
+============================================
+ Testing algorithm=xor, level=128
+--------------------------------------------
+Result: 27
+[ 1480.338574] Checksum module loaded: algorithm=xor, level=128
+[ 1481.350401] Checksum buffer updated: Hello, World!
+
+
