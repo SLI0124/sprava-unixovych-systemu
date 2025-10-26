@@ -151,20 +151,3 @@ drwxr-xr-x  11 root root  4096 Sep 25 09:01 var
 lrwxrwxrwx   1 root root    32 Sep 25 08:53 vmlinuz -> boot/vmlinuz-6.12.48+deb13-amd64
 lrwxrwxrwx   1 root root    32 Sep 25 08:52 vmlinuz.old -> boot/vmlinuz-6.12.43+deb13-amd64
 ```
-
-## Poznámka
-
-Spuštění příkazu `dhclient enp0s8` je potřeba po každém restartu virtuálního stroje, protože to v paměti nastavané a ne pernamentně skrze konfigurační soubor. Pokud byste chtěli, aby se IP adresa přidělovala automaticky při startu, je potřeba upravit konfigurační soubor sítě v souboru **`/etc/network/interfaces`** a přidat tam:
-
-```plaintext
-auto enp0s8
-iface enp0s8 inet dhcp
-```
-
-Poté restartujte síťové služby příkazem:
-
-```bash
-ifdown enp0s8 && ifup enp0s8
-```
-
-Nyní by se měla IP adresa přidělovat automaticky při každém startu virtuálního stroje.
