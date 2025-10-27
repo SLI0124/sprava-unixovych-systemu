@@ -1,10 +1,10 @@
-# Cvičení 3:  Tvorba ovladačů
+# Cvičení 3: Tvorba ovladačů
 
-lol nějaký úvod
+V tomhle cvičení si vyzkoušíme, jak se dělají kernelové moduly v Linuxu – hlavně ovladače zařízení. Vyzkoušíme si je kompilovat, nahrávat a mazat, a taky vytvořit jednoduchý způsob, jak komunikovat s uživatelským prostorem přes soubory v `/dev` a `/proc`. Máme poskytnuty ukázkové moduly.
 
 ## Před tím, než začneme
 
-Pokud máte zkompilovaný kernel z miulého cvičení, můžete ho použít. Nemusíte dělat nic navíc. Pokud ne, stáhněte si hlavičkové soubory pro právě běžící kernel:
+Pokud máte zkompilovaný kernel z minulého cvičení, můžete ho použít. Nemusíte dělat nic navíc. Pokud ne, stáhněte si hlavičkové soubory pro právě běžící kernel:
 
 ```bash
 apt-get install linux-headers-$(uname -r)
