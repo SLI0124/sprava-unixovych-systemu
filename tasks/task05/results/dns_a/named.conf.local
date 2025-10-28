@@ -1,0 +1,23 @@
+//
+// Do any local configuration here
+//
+
+acl "sli0124.cz" {
+	192.168.56.106;
+};
+
+zone "sli0124.cz" {
+       type master;	//jedná se o primární server pro danou doménu
+       file "/etc/bind/db.sli0124.cz";
+       allow-transfer { "sli0124.cz"; };
+};
+
+acl "56.168.192.in-addr.arpa"{
+	192.168.56.106;
+};
+
+zone "56.168.192.in-addr.arpa" {
+       type master;
+       file "/etc/bind/db.192.168.56";
+       allow-transfer {"56.168.192.in-addr.arpa";};
+};

@@ -1,0 +1,19 @@
+//
+// Do any local configuration here
+//
+
+// primarni dnska se nachi na teto IP adrese
+masters sli0124.cz-master { 192.168.56.105; };
+
+// spravujeme zonu
+zone sli0124.cz {
+	type slave; //tohleto je slave, tedy sekundarni 
+	file "/var/cache/bind/db.sli0124.cz"; // stahni si z primarni tu informaci
+	masters { sli0124.cz-master; }; // a az si stahni tu informaci, uloz si ji zde 
+};
+
+zone 56.168.192.in-addr.arpa {
+        type slave;
+        file "/var/cache/bind/db.192.168.56";
+        masters { sli0124.cz-master; };
+};

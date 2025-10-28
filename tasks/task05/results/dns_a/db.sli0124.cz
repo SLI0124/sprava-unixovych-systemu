@@ -1,0 +1,34 @@
+$TTL 3h 			   ;doba expirace všech záznamů
+@       IN      SOA     ns1.sli0124.cz. spravce.sli0124.cz. (  ; autoritativní DNS server + email správce bez @
+                         2025102700 ; seriové číslo, často ve formě data
+                         4h         ; jak často si stahuje data sekundární server
+                         2h         ; za jak dlouho se má sek.server pokusit stáhnout data při neúspěchu
+                         2w         ; kdy platnost dat v sek.serveru vyprší
+                         1h )       ; jak dlouho si mají data pamatovat cache servery
+;
+@       IN      NS      ns1.sli0124.cz. ; autoritativní servery pro doménu, musí mít i A záznamy
+@       IN      NS      ns2.sli0124.cz. ; autoritativní servery pro doménu, musí mít i A záznamy
+
+
+sli0124.cz.    IN      MX      10      smtp.sli0124.cz.  ; primární emailový server
+sli0124.cz.    IN      MX      20      smtp2.sli0124.cz. ; sekundární emailový server
+sli0124.cz.    IN      A       192.168.56.105            ; primární záznamy
+ns1            IN      A       192.168.56.105
+ns2            IN      A       192.168.56.106
+smtp           IN      A       192.168.56.105
+smtp2          IN      A       192.168.56.106
+www            IN      CNAME   sli0124.cz.
+wiki	       IN      CNAME   sli0124.cz.
+test	       IN      CNAME   sli0124.cz.
+subdomena1     IN      A       192.168.56.105
+subdomena2     IN      CNAME   sli0124.cz.
+www1	       IN      A       192.168.56.105
+www2           IN      A       192.168.56.105
+
+_http._tcp     IN      SRV     1 2 80  www1                ; _http sluzba, _tcp protokol, 1 priorita, 2 váha
+               IN      SRV     5 3 80  www2
+
+_http._tcp.www IN      SRV     1 2 80  www1.sli0124.cz.    ; _http sluzba, _tcp protokol, 1 priorita, 2 váha
+               IN      SRV     5 3 80  www2.sli0124.cz.
+
+*._tcp         IN      SRV     0 0 0   .  ;ostatní služby nejsou podporovány

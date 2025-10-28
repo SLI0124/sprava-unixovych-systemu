@@ -1,0 +1,327 @@
+=== TESTOVÁNÍ PRIMÁRNÍHO DNS SERVERU (192.168.56.105) ===
+
+=== SOA záznam - primární server ===
+Příkaz: dig @192.168.56.105 sli0124.cz SOA
+
+; <<>> DiG 9.20.11-4-Debian <<>> @192.168.56.105 sli0124.cz SOA
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 32920
+;; flags: qr aa rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1232
+; COOKIE: 9165534c94c927a7010000006900cc38c8e480037d21f479 (good)
+;; QUESTION SECTION:
+;sli0124.cz.			IN	SOA
+
+;; ANSWER SECTION:
+sli0124.cz.		10800	IN	SOA	ns1.sli0124.cz. spravce.sli0124.cz. 2025102700 14400 7200 1209600 3600
+
+;; Query time: 0 msec
+;; SERVER: 192.168.56.105#53(192.168.56.105) (UDP)
+;; WHEN: Tue Oct 28 14:59:20 CET 2025
+;; MSG SIZE  rcvd: 115
+
+
+=== NS záznamy - primární server ===
+Příkaz: dig @192.168.56.105 sli0124.cz NS
+
+; <<>> DiG 9.20.11-4-Debian <<>> @192.168.56.105 sli0124.cz NS
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 19790
+;; flags: qr aa rd ra; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: 3
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1232
+; COOKIE: 72528f0d3724ff33010000006900cc38a80f19427a7ec5cf (good)
+;; QUESTION SECTION:
+;sli0124.cz.			IN	NS
+
+;; ANSWER SECTION:
+sli0124.cz.		10800	IN	NS	ns1.sli0124.cz.
+sli0124.cz.		10800	IN	NS	ns2.sli0124.cz.
+
+;; ADDITIONAL SECTION:
+ns1.sli0124.cz.		10800	IN	A	192.168.56.105
+ns2.sli0124.cz.		10800	IN	A	192.168.56.106
+
+;; Query time: 0 msec
+;; SERVER: 192.168.56.105#53(192.168.56.105) (UDP)
+;; WHEN: Tue Oct 28 14:59:20 CET 2025
+;; MSG SIZE  rcvd: 135
+
+
+=== A záznamy - primární server ===
+Příkaz: dig @192.168.56.105 ns1.sli0124.cz A
+
+; <<>> DiG 9.20.11-4-Debian <<>> @192.168.56.105 ns1.sli0124.cz A
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 26615
+;; flags: qr aa rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1232
+; COOKIE: 7d22f2204cfc31b5010000006900cc38ec1ec2d2aa4d2944 (good)
+;; QUESTION SECTION:
+;ns1.sli0124.cz.			IN	A
+
+;; ANSWER SECTION:
+ns1.sli0124.cz.		10800	IN	A	192.168.56.105
+
+;; Query time: 0 msec
+;; SERVER: 192.168.56.105#53(192.168.56.105) (UDP)
+;; WHEN: Tue Oct 28 14:59:20 CET 2025
+;; MSG SIZE  rcvd: 87
+
+
+=== CNAME záznamy - primární server ===
+Příkaz: dig @192.168.56.105 alias.sli0124.cz CNAME
+
+; <<>> DiG 9.20.11-4-Debian <<>> @192.168.56.105 alias.sli0124.cz CNAME
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NXDOMAIN, id: 46347
+;; flags: qr aa rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1232
+; COOKIE: c2c38d3c782a15db010000006900cc382d66a5a8a85b0fbe (good)
+;; QUESTION SECTION:
+;alias.sli0124.cz.		IN	CNAME
+
+;; AUTHORITY SECTION:
+sli0124.cz.		3600	IN	SOA	ns1.sli0124.cz. spravce.sli0124.cz. 2025102700 14400 7200 1209600 3600
+
+;; Query time: 0 msec
+;; SERVER: 192.168.56.105#53(192.168.56.105) (UDP)
+;; WHEN: Tue Oct 28 14:59:20 CET 2025
+;; MSG SIZE  rcvd: 121
+
+
+=== SRV záznamy - primární server ===
+Příkaz: dig @192.168.56.105 _http._tcp.sli0124.cz SRV
+
+; <<>> DiG 9.20.11-4-Debian <<>> @192.168.56.105 _http._tcp.sli0124.cz SRV
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 31908
+;; flags: qr aa rd ra; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: 3
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1232
+; COOKIE: 9a031acdff84f570010000006900cc3895aaf555c23438f7 (good)
+;; QUESTION SECTION:
+;_http._tcp.sli0124.cz.		IN	SRV
+
+;; ANSWER SECTION:
+_http._tcp.sli0124.cz.	10800	IN	SRV	1 2 80 www1.sli0124.cz.
+_http._tcp.sli0124.cz.	10800	IN	SRV	5 3 80 www2.sli0124.cz.
+
+;; ADDITIONAL SECTION:
+www1.sli0124.cz.	10800	IN	A	192.168.56.105
+www2.sli0124.cz.	10800	IN	A	192.168.56.105
+
+;; Query time: 0 msec
+;; SERVER: 192.168.56.105#53(192.168.56.105) (UDP)
+;; WHEN: Tue Oct 28 14:59:20 CET 2025
+;; MSG SIZE  rcvd: 180
+
+
+=== Reverzní záznamy - primární server ===
+Příkaz: dig @192.168.56.105 -x 192.168.56.105
+
+; <<>> DiG 9.20.11-4-Debian <<>> @192.168.56.105 -x 192.168.56.105
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 40023
+;; flags: qr aa rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1232
+; COOKIE: 0e925f655dd4f280010000006900cc3932c706fa2b580a70 (good)
+;; QUESTION SECTION:
+;105.56.168.192.in-addr.arpa.	IN	PTR
+
+;; ANSWER SECTION:
+105.56.168.192.in-addr.arpa. 86400 IN	PTR	ns1.sli0124.cz.
+
+;; Query time: 0 msec
+;; SERVER: 192.168.56.105#53(192.168.56.105) (UDP)
+;; WHEN: Tue Oct 28 14:59:21 CET 2025
+;; MSG SIZE  rcvd: 112
+
+
+=== TESTOVÁNÍ SEKUNDÁRNÍHO DNS SERVERU (192.168.56.106) ===
+=== Ověření synchronizace dat ze primárního serveru ===
+
+=== SOA záznam - sekundární server (test synchronizace) ===
+Příkaz: dig @192.168.56.106 sli0124.cz SOA
+
+; <<>> DiG 9.20.11-4-Debian <<>> @192.168.56.106 sli0124.cz SOA
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 3416
+;; flags: qr aa rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1232
+; COOKIE: 9340e0619b17ebba010000006900cc3918d6e64629d8c4fe (good)
+;; QUESTION SECTION:
+;sli0124.cz.			IN	SOA
+
+;; ANSWER SECTION:
+sli0124.cz.		10800	IN	SOA	ns1.sli0124.cz. spravce.sli0124.cz. 2025102700 14400 7200 1209600 3600
+
+;; Query time: 0 msec
+;; SERVER: 192.168.56.106#53(192.168.56.106) (UDP)
+;; WHEN: Tue Oct 28 14:59:21 CET 2025
+;; MSG SIZE  rcvd: 115
+
+
+=== NS záznamy - sekundární server (test synchronizace) ===
+Příkaz: dig @192.168.56.106 sli0124.cz NS
+
+; <<>> DiG 9.20.11-4-Debian <<>> @192.168.56.106 sli0124.cz NS
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 44188
+;; flags: qr aa rd ra; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: 3
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1232
+; COOKIE: 2e63991e44595d40010000006900cc399c1690e771b3c282 (good)
+;; QUESTION SECTION:
+;sli0124.cz.			IN	NS
+
+;; ANSWER SECTION:
+sli0124.cz.		10800	IN	NS	ns2.sli0124.cz.
+sli0124.cz.		10800	IN	NS	ns1.sli0124.cz.
+
+;; ADDITIONAL SECTION:
+ns1.sli0124.cz.		10800	IN	A	192.168.56.105
+ns2.sli0124.cz.		10800	IN	A	192.168.56.106
+
+;; Query time: 0 msec
+;; SERVER: 192.168.56.106#53(192.168.56.106) (UDP)
+;; WHEN: Tue Oct 28 14:59:21 CET 2025
+;; MSG SIZE  rcvd: 135
+
+
+=== A záznamy - sekundární server (test synchronizace) ===
+Příkaz: dig @192.168.56.106 ns2.sli0124.cz A
+
+; <<>> DiG 9.20.11-4-Debian <<>> @192.168.56.106 ns2.sli0124.cz A
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 64378
+;; flags: qr aa rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1232
+; COOKIE: c95e27070dd7c607010000006900cc39d2120e55b61d3d91 (good)
+;; QUESTION SECTION:
+;ns2.sli0124.cz.			IN	A
+
+;; ANSWER SECTION:
+ns2.sli0124.cz.		10800	IN	A	192.168.56.106
+
+;; Query time: 0 msec
+;; SERVER: 192.168.56.106#53(192.168.56.106) (UDP)
+;; WHEN: Tue Oct 28 14:59:21 CET 2025
+;; MSG SIZE  rcvd: 87
+
+
+=== Reverzní záznamy - sekundární server (test synchronizace) ===
+Příkaz: dig @192.168.56.106 -x 192.168.56.106
+
+; <<>> DiG 9.20.11-4-Debian <<>> @192.168.56.106 -x 192.168.56.106
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 16963
+;; flags: qr aa rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1232
+; COOKIE: e772260919563337010000006900cc390989d3f4ce3ed51d (good)
+;; QUESTION SECTION:
+;106.56.168.192.in-addr.arpa.	IN	PTR
+
+;; ANSWER SECTION:
+106.56.168.192.in-addr.arpa. 86400 IN	PTR	ns2.sli0124.cz.
+
+;; Query time: 0 msec
+;; SERVER: 192.168.56.106#53(192.168.56.106) (UDP)
+;; WHEN: Tue Oct 28 14:59:21 CET 2025
+;; MSG SIZE  rcvd: 112
+
+
+=== OVĚŘENÍ FUNKČNOSTI OBOU SERVERŮ ===
+=== Test CNAME na sekundárním (test synchronizace CNAME) ===
+Příkaz: dig @192.168.56.106 alias.sli0124.cz CNAME
+
+; <<>> DiG 9.20.11-4-Debian <<>> @192.168.56.106 alias.sli0124.cz CNAME
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NXDOMAIN, id: 26742
+;; flags: qr aa rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1232
+; COOKIE: 64123da328d95767010000006900cc390d65b48cd8d4b582 (good)
+;; QUESTION SECTION:
+;alias.sli0124.cz.		IN	CNAME
+
+;; AUTHORITY SECTION:
+sli0124.cz.		3600	IN	SOA	ns1.sli0124.cz. spravce.sli0124.cz. 2025102700 14400 7200 1209600 3600
+
+;; Query time: 0 msec
+;; SERVER: 192.168.56.106#53(192.168.56.106) (UDP)
+;; WHEN: Tue Oct 28 14:59:21 CET 2025
+;; MSG SIZE  rcvd: 121
+
+
+=== Test SRV na sekundárním (test synchronizace SRV) ===
+Příkaz: dig @192.168.56.106 _http._tcp.sli0124.cz SRV
+
+; <<>> DiG 9.20.11-4-Debian <<>> @192.168.56.106 _http._tcp.sli0124.cz SRV
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 41578
+;; flags: qr aa rd ra; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: 3
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1232
+; COOKIE: bd4ce4f3da2cb85a010000006900cc391d5f57fba3f05bda (good)
+;; QUESTION SECTION:
+;_http._tcp.sli0124.cz.		IN	SRV
+
+;; ANSWER SECTION:
+_http._tcp.sli0124.cz.	10800	IN	SRV	1 2 80 www1.sli0124.cz.
+_http._tcp.sli0124.cz.	10800	IN	SRV	5 3 80 www2.sli0124.cz.
+
+;; ADDITIONAL SECTION:
+www1.sli0124.cz.	10800	IN	A	192.168.56.105
+www2.sli0124.cz.	10800	IN	A	192.168.56.105
+
+;; Query time: 0 msec
+;; SERVER: 192.168.56.106#53(192.168.56.106) (UDP)
+;; WHEN: Tue Oct 28 14:59:21 CET 2025
+;; MSG SIZE  rcvd: 180
+
+
+=== TESTY DOKONČENY ===

@@ -1,0 +1,19 @@
+$TTL    86400
+56.168.192.in-addr.arpa.  IN  SOA     ns1.sli0124.cz. admin.sli0124.cz. (
+                            2025102801 ; Serial - datum + revize
+                            4h         ; Refresh - sekundární se dotazuje po 4h
+                            2h         ; Retry - při chybě zkusí znovu po 2h
+                            2w         ; Expire - po 2 týdnech data zneplatní
+                            1h )       ; Negative Cache TTL
+;
+
+; --- Autoritativní jmenné servery ---
+56.168.192.in-addr.arpa.  IN  NS      ns1.sli0124.cz.
+56.168.192.in-addr.arpa.  IN  NS      ns2.sli0124.cz.
+
+; --- Reverzní PTR záznamy ---
+105.56.168.192.in-addr.arpa.  IN  PTR     ns1.sli0124.cz.      ; PŘIDÁNO
+106.56.168.192.in-addr.arpa.  IN  PTR     ns2.sli0124.cz.      ; PŘIDÁNO
+1.56.168.192.in-addr.arpa.    IN  PTR     router.sli0124.cz.
+10.56.168.192.in-addr.arpa.   IN  PTR     webserver.sli0124.cz.
+110.56.168.192.in-addr.arpa.  IN  PTR     wiki.sli0124.cz.
