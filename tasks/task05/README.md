@@ -58,6 +58,66 @@ reboot
 
 Po restartu uvidíte nové jméno v command promptu (např. `root@dns1:~#` místo `root@debian:~#`).
 
+### Konfigurace statické IP adresy
+
+Pro správnou funkci DNS serverů je důležité nastavit statické IP adresy. Upravte soubor `/etc/network/interfaces`:
+
+**Na prvním serveru (DNS1) - IP: 192.168.56.105:**
+
+```bash
+nano /etc/network/interfaces
+```
+
+```ini
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+# The primary network interface (NAT)
+auto enp0s3
+iface enp0s3 inet dhcp
+
+# Host-only network interface (static IP)
+auto enp0s8
+iface enp0s8 inet static
+    address 192.168.56.105
+    netmask 255.255.255.0
+```
+
+**Na druhém serveru (DNS2) - IP: 192.168.56.106:**
+
+```bash
+nano /etc/network/interfaces
+```
+
+```ini
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+# The primary network interface (NAT)
+auto enp0s3
+iface enp0s3 inet dhcp
+
+# Host-only network interface (static IP)
+auto enp0s8
+iface enp0s8 inet static
+    address 192.168.56.106
+    netmask 255.255.255.0
+```
+
+Po úpravě restartujte síťové služby:
+
+```bash
+systemctl restart networking
+```
+
+Nebo restartujte celý systém pro jistotu:
+
+```bash
+reboot
+```
+
 ## Krok 1: Instalace potřebných balíčků
 
 Na obou serverech nainstalujte BIND9 a pomocné nástroje:
