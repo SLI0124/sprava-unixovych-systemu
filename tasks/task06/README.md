@@ -1,4 +1,4 @@
-# Cvičení 6: LAMP Stack (Linux, Apache, MySQL/MariaDB, PHP)
+# Cvičení 6: LAMP
 
 ## Co to je LAMP?
 
