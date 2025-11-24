@@ -40,6 +40,8 @@ iface enp0s3 inet6 auto
 allow-hotplug enp0s8
 iface enp0s8 inet static
         address 192.168.57.2/24
+        netmask 255.255.255.0 # mělo by se doplnit automaticky
+        broadcast 192.168.57.255 # ale tady to můžeme nastavit ručně, pro jistotu
 ```
 
 Potom aktivujeme tu druhou síťovku:
@@ -75,13 +77,14 @@ INTERFACESv4="enp0s8"
 ```bash
 # Globální nastavení pro všechny sítě
 option domain-name "vsb.cz";
-# DNS servery - POZOR na rozdíl mezi školou a domovem!
+# DNS servery - POZOR na rozdíl mezi školou a domácí sítí
 option domain-name-servers 158.196.0.53;  # školní DNS (pouze na školní síti!)
 # Pokud konfigurujete doma, použijte: 8.8.8.8, 8.8.4.4 (Google DNS)
 
 # Konfigurace naší podsítě
 subnet 192.168.57.0 netmask 255.255.255.0 {
   range 192.168.57.10 192.168.57.20;  # rozsah IP adres pro klienty
+  option broadcast-address 192.168.57.255; # broadcast adresa sítě
   option routers 192.168.57.2;        # náš server jako gateway
 }
 ```
@@ -161,7 +164,7 @@ apt install tftpd-hpa
 ```
 
 Konfigurace je v `/etc/default/tftpd-hpa`, ale defaultní nastavení většinou stačí.
-TFTP soubory se ukládají do `/srv/tftp/`.
+TFTP soubory se ukládají do `/srv/tftp/`. Právě tuto cestu můžeme změnit v konfiguraci, ale pro naše účely to není potřeba.
 
 ### Test TFTP
 
@@ -211,12 +214,14 @@ subnet 192.168.57.0 netmask 255.255.255.0 {
 }
 ```
 
+A rovnou si zkontrolujeme konfiguraci:
+
 ```bash
 dhcpd -t
 service isc-dhcp-server restart
 ```
 
-**Test:** Vytvoříme nový PC (NETBOOT) bez disku, jen s network boot. Mělo by se objevit install menu!
+**Test:** Vytvoříme nový PC (NETBOOT) bez disku, jen s network boot. Mělo by se objevit grafické install menu! Není tam ale grafický installer, install.
 
 ## Část 5: NFS Server
 
@@ -229,6 +234,16 @@ apt install nfs-kernel-server
 ```
 
 ### Příprava root filesystému
+
+Zálohujeme si původní netboot soubory pro případ, že bychom je potřebovali:
+
+```bash
+mkdir backup
+rm netboot.tar file.txt
+mv * backup/
+```
+
+Vytvoříme adresář pro root filesystem:
 
 ```bash
 mkdir /srv/tftp/rootfs
@@ -284,14 +299,26 @@ touch pokus.txt  # mělo by se objevit na serveru
 
 Teď to všechno spojíme dohromady!
 
+### Příprava root filesystému (rootfs)
+
+Zkopírujeme systémové soubory do rootfs:
+
+```bash
+# Zkopírujeme systémové adresáře z současně běžícího systému
+cp -arv /bin /boot /etc /home /lib /lib64 /opt /root /sbin /tmp /usr /var rootfs/
+
+# Vytvoříme prázdné adresáře
+mkdir rootfs/{dev,media,mnt,proc,lost+found,run,srv,sys}
+
+# Nastavení speciálních práv pro tmp
+chmod 777 rootfs/tmp/
+chmod o+t rootfs/tmp/
+```
+
 ### Uspořádání boot souborů
 
 ```bash
 cd /srv/tftp
-
-# Přesuneme netboot soubory do zálohy
-mkdir backup
-mv debian-installer backup/
 
 # Zkopírujeme potřebné PXE soubory
 # -arv, a -zachovává práva, r - rekurzivně, v - verbose (ukazuje co dělá)
@@ -341,22 +368,6 @@ Důležité vysvětlení:
 - `nfsroot` říká, kde má kernel hledat root filesystem
 - `ip=dhcp` říká, že IP adresu má získat přes DHCP
 - `rw` povoluje zápis (na rozdíl od `ro` při boot z disku)
-
-### Příprava root filesystému (rootfs)
-
-Zkopírujeme systémové soubory do rootfs:
-
-```bash
-# Zkopírujeme systémové adresáře
-cp -arv /bin /boot /etc /home /lib /lib64 /opt /root /sbin /tmp /usr /var rootfs/
-
-# Vytvoříme prázdné adresáře
-mkdir rootfs/{dev,media,mnt,proc,lost+found,run,srv,sys}
-
-# Nastavení speciálních práv pro tmp
-chmod 777 rootfs/tmp/
-chmod o+t rootfs/tmp/
-```
 
 ### Konfigurace sítě pro bezdiskový boot
 
