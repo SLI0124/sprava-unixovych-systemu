@@ -238,6 +238,7 @@ apt install nfs-kernel-server
 Zálohujeme si původní netboot soubory pro případ, že bychom je potřebovali:
 
 ```bash
+cd /srv/tftp
 mkdir backup
 rm netboot.tar file.txt
 mv * backup/
@@ -304,6 +305,7 @@ Teď to všechno spojíme dohromady!
 Zkopírujeme systémové soubory do rootfs:
 
 ```bash
+cd /srv/tftp
 # Zkopírujeme systémové adresáře z současně běžícího systému
 cp -arv /bin /boot /etc /home /lib /lib64 /opt /root /sbin /tmp /usr /var rootfs/
 
@@ -426,9 +428,7 @@ Při více klientech všichni používají stejný `/tmp`. **Praktický příkla
 Smažeme si některé balíčky, pokud už je nebudeme potřebovat. Totiž konfigurace zůstala ze setrveeru, takže pár služeb se nespustí a mohou dělat problémy:
 
 ```bash
-apt remove isc-dhcp-server
-apt remove nfs-kernel-server
-apt remove tftpd-hpa
+apt remove isc-dhcp-server nfs-kernel-server tftpd-hpa
 ```
 
 ## Řešení problémů
