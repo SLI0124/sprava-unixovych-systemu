@@ -483,6 +483,12 @@ Teď by mělo v webové konzoli ukázat, že nám chybí nějaké balíčky, u m
 apt install php-mbstring php-xml php-mysql php-intl # popřípadě doinstalovat ostatní
 ```
 
+a ještě to musíme restartovat:
+
+```bash
+systemctl restart apache2
+```
+
 Pokud se vše podařilo, měli bychome dostat chybu, že `LocalSettings.php not found`.
 
 ### Webová konfigurace MediaWiki
