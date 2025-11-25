@@ -408,7 +408,7 @@ service bind9 restart
 
 Mělo by vše jít, kdyby ne, tak si rozeběhněte status service a najděte chyby, zkontrolujte IP adresy.
 
-## Poznámka o reverzních záznamech
+## Krok 5: Konfigurace reverzních DNS záznamů
 
 ### Teorie: Reverzní DNS
 
@@ -424,7 +424,123 @@ Mělo by vše jít, kdyby ne, tak si rozeběhněte status service a najděte chy
 - **Bezpečnost**: Některé služby vyžadují konzistentní přímé i reverzní záznamy
 - **Logování**: Administrátoři chtějí vidět jména místo IP adres v logách
 
-Musíme udělat i reverzní záznamy, ale to už je pokročilejší téma pro další cvičení.
+### Vytvoření reverzního zónového souboru
+
+Pro síť `192.168.56.0/24` vytvoříme reverzní zónu. Vytvořte soubor `/etc/bind/db.192.168.56`:
+
+```bash
+nano /etc/bind/db.192.168.56
+```
+
+Vložte následující obsah (nahraďte `sli0124` za svůj login):
+
+```bind
+$TTL    86400
+56.168.192.in-addr.arpa.  IN  SOA     ns1.sli0124.cz. admin.sli0124.cz. (
+                            2025102801 ; Serial - datum + revize
+                            4h         ; Refresh - sekundární se dotazuje po 4h
+                            2h         ; Retry - při chybě zkusí znovu po 2h
+                            2w         ; Expire - po 2 týdnech data zneplatní
+                            1h )       ; Negative Cache TTL
+;
+
+; --- Autoritativní jmenné servery ---
+56.168.192.in-addr.arpa.  IN  NS      ns1.sli0124.cz.
+56.168.192.in-addr.arpa.  IN  NS      ns2.sli0124.cz.
+
+; --- Reverzní PTR záznamy ---
+; Formát: posledni_oktet.síť.in-addr.arpa. IN PTR doménové_jméno.
+105.56.168.192.in-addr.arpa.  IN  PTR     ns1.sli0124.cz.
+106.56.168.192.in-addr.arpa.  IN  PTR     ns2.sli0124.cz.
+1.56.168.192.in-addr.arpa.    IN  PTR     router.sli0124.cz.
+10.56.168.192.in-addr.arpa.   IN  PTR     webserver.sli0124.cz.
+110.56.168.192.in-addr.arpa.  IN  PTR     wiki.sli0124.cz.
+```
+
+### Aktualizace konfigurace primárního serveru
+
+Upravte `/etc/bind/named.conf.local` na primárním serveru a přidejte konfiguraci pro reverzní zónu:
+
+```bash
+nano /etc/bind/named.conf.local
+```
+
+Přidejte na konec souboru:
+
+```bind
+acl "56.168.192.in-addr.arpa" {
+    192.168.56.106;
+};
+
+zone "56.168.192.in-addr.arpa" {
+       type master;
+       file "/etc/bind/db.192.168.56";
+       allow-transfer { "56.168.192.in-addr.arpa"; };
+};
+```
+
+### Aktualizace sekundárního serveru
+
+Na sekundárním serveru přidejte do `/etc/bind/named.conf.local` konfiguraci pro reverzní zónu:
+
+```bash
+nano /etc/bind/named.conf.local
+```
+
+Přidejte:
+
+```bind
+zone "56.168.192.in-addr.arpa" {
+        type slave;
+        file "/var/cache/bind/db.192.168.56";
+        masters { sli0124.cz-master; };
+};
+```
+
+### Restart služeb a testování
+
+Na obou serverech restartujte BIND9:
+
+```bash
+service bind9 restart
+service bind9 status
+```
+
+### Testování reverzního DNS
+
+```bash
+# Test reverzního překladu na primárním serveru
+nslookup 192.168.56.105 127.0.0.1
+
+# Test na sekundárním serveru
+nslookup 192.168.56.105 192.168.56.106
+
+# Alternativně můžete použít dig
+dig -x 192.168.56.105 @127.0.0.1
+dig -x 192.168.56.106 @192.168.56.106
+```
+
+Úspěšný výstup by měl vypadat takto:
+
+```plaintext
+Server:         127.0.0.1
+Address:        127.0.0.1#53
+
+105.56.168.192.in-addr.arpa     name = ns1.sli0124.cz.
+```
+
+### Testování konzistence přímých a reverzních záznamů
+
+Pro úplné ověření funkčnosti otestujte konzistenci:
+
+```bash
+# Přímý překlad
+nslookup ns1.sli0124.cz 127.0.0.1
+# Reverzní překlad výsledné IP adresy
+nslookup 192.168.56.105 127.0.0.1
+```
+
+Oba testy by měly vracet konzistentní výsledky - doménové jméno a IP adresa by si měly odpovídat v obou směrech.
 
 ## Struktura výsledků
 
