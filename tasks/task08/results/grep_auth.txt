@@ -1,0 +1,4 @@
+root@smtp-imap:/home# cat /etc/dovecot/conf.d/10-auth.conf | grep -e auth_mechanisms -e auth_allow_cleartext
+auth_allow_cleartext = yes
+# NOTE: See also auth_allow_cleartext setting.
+auth_mechanisms = plain login 
