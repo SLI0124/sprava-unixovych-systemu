@@ -82,8 +82,8 @@ Najdeme sekci s mail_location a upravíme ji takto:
 #mail_location = mbox:~/mail:INBOX=/var/mail/%u
 
 # Přidáme nové maildir nastavení
-mail_location = maildir:~/Maildir
-mail_home = /home/%u
+mail_driver = maildir
+mail_path = ~/Maildir
 ```
 
 ### Restart Dovecot služby
@@ -108,7 +108,7 @@ Přejdeme na **DNS server** (192.168.56.105) a přidáme potřebné záznamy pro
 ### Přidání MX a A záznamů
 
 ```bash
-nano /etc/bind/db/db.sli0124.cz
+nano /etc/bind/db.sli0124.cz
 ```
 
 **Před úpravou souboru nezapomeňte zvýšit sériové číslo o 1!**
@@ -166,7 +166,7 @@ alias          IN      CNAME   www.sli0124.cz.
 ### Ověření konfigurace DNS
 
 ```bash
-named-checkzone sli0124.cz /etc/bind/db/db.sli0124.cz
+named-checkzone sli0124.cz /etc/bind/db.sli0124.cz
 ```
 
 Pokud je vše v pořádku, restartujeme BIND9:
@@ -251,7 +251,7 @@ Během instalace:
 Na **DNS serveru** přidáme záznam pro roundcube:
 
 ```bash
-nano /etc/bind/db/db.sli0124.cz
+nano /etc/binddb.sli0124.cz
 ```
 
 Přidáme řádek do sekce s A záznamy (nezapomeneme zvýšit sériové číslo):
@@ -261,7 +261,7 @@ Přidáme řádek do sekce s A záznamy (nezapomeneme zvýšit sériové číslo
 www2           IN      A       192.168.56.105
 imap           IN      A       192.168.56.107
 lamp           IN      A       192.168.56.80
-roundcube      IN      CNAME   lamp.sli0124.cz.  # <-- NOVĚ PŘIDANÝ ŘÁDEK
+roundcube      IN      CNAME   lamp.sli0124.cz.  ; <-- NOVĚ PŘIDANÝ ŘÁDEK
 
 ; SRV záznamy pro mailové služby
 _imap._tcp     IN      SRV    1 2 143  imap.sli0124.cz.
@@ -270,7 +270,7 @@ _imap._tcp     IN      SRV    1 2 143  imap.sli0124.cz.
 Ověříme a restartujeme:
 
 ```bash
-named-checkzone sli0124.cz /etc/bind/db/db.sli0124.cz
+named-checkzone sli0124.cz /etc/bind/db.sli0124.cz
 systemctl reload bind9
 ```
 
