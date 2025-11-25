@@ -280,6 +280,18 @@ root@smtp-imap:/etc/postfix# cat canonical
 sli0124 vojtech.sliva
 ```
 
+```bash
+nano /etc/aliases
+# zde dopiseme alias pro vojtech.sliva
+vojtech.sliva: sli0124 # alias pro kanonické jméno
+```
+
+a potvrzení aliasů:
+
+```bash
+newaliases
+```
+
 A vytvoříme pomocí:
 
 ```bash
