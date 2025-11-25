@@ -167,6 +167,9 @@ V `/etc/postfix/main.cf` je konfigurace, kde vidíme položky:
 Test relay - pokus o odeslání mimo naši doménu:
 
 ```bash
+telnet smtp.sli0124.cz 25
+helo sli0124.cz
+mail from: sli0124@sli0124.cz
 rcpt to: sli0124@vsb.cz
 454 4.7.1 <sli0124@vsb.cz>: Relay access denied
 ```
@@ -200,7 +203,7 @@ Každý uživatel z `/home/` je i uživatel mailu.
 Přidáme si jednoho uživatele navíc:
 
 ```bash
-useradd sli124
+adduser sli124
 ```
 
 Pokud chceme aliasy a lepší zprávu serverového mailu, tak editujeme soubor:
@@ -225,6 +228,7 @@ Test aliasu - odeslání na skupinu:
 
 ```bash
 telnet smtp.sli0124.cz 25
+mail from: sli0124@sli0124.cz
 rcpt to: studenti@sli0124.cz
 250 2.1.5 Ok
 ```
@@ -260,6 +264,7 @@ Test individuálního aliasu:
 
 ```bash
 telnet smtp.sli0124.cz 25
+mail from: sli0124@sli0124.cz
 rcpt to: borec@sli0124.cz
 250 2.1.5 Ok
 ```
@@ -298,9 +303,12 @@ A vytvoříme pomocí:
 postmap canonical # zase se vytvořila databáze pro rychlejší nalezení
 ```
 
+A ještě úprava hlavního configu Postfixu, můžeme vložit řádek na konec:
+
 ```bash
 nano /etc/postfix/main.cf
-canonical_maps = hash:/etc/postfix/canonical # hash je ta databáze
+# hash je ta databáze
+canonical_maps = hash:/etc/postfix/canonical
 ```
 
 A potvrzení:
