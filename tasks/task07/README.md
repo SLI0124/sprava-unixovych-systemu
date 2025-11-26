@@ -1,6 +1,6 @@
 # Cvičení 8: IMAP a SMTP server
 
-Toto cvičení je zaměřeno na konfiguraci **SMTP a IMAP serveru pomocí Postfix** v distribuci Debian.
+Toto cvičení je zaměřeno na konfiguraci **SMTP a IMAP serveru pomocí Postfix** v distribuci Debian. Je to rozšíření předchozího cvičení o webový server a DNS server.
 
 ## Úvod do problematiky
 
@@ -51,7 +51,7 @@ ifup enp0s8
 V DNS si upravíme SMTP1 a SMTP2 na IP adresu IMAP serveru:
 
 ```bash
-nano /var/lib/bind/db.sli0124.cz
+nano /etc/bind/db.sli0124.cz
 ```
 
 ```bash
