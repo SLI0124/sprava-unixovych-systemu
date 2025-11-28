@@ -1,4 +1,4 @@
-# Cvičení 8: IMAP a SMTP server
+# Cvičení 7: IMAP a SMTP server
 
 Toto cvičení je zaměřeno na konfiguraci **SMTP a IMAP serveru pomocí Postfix** v distribuci Debian. Je to rozšíření předchozího cvičení o webový server a DNS server.
 

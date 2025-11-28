@@ -20,7 +20,7 @@ Budeme potřebovat:
 - **Nějaký způsob zobrazení** webových stránek:
   - Skrze terminálový prohlížeč (elinks, w3m, lynx)
     - Udělat si kopii base serveru pro testování stránek
-  - Na nativním hostovi (museli bychom změnit DNS na DNS 1)
+  - Na nativním hostovi (museli bychom změnit DNS na DNS 1), na školních počítačích to nepůjde kvůli restrikcím, ale doma/na vlastním PC to půjde
 
 ### Různé možnosti testování
 
@@ -93,7 +93,7 @@ Ještě pro jistotu si můžeme přejmenovat počítač na LAMP:
 
 ```bash
 hostnamectl set-hostname lamp
-# Možná bude dobré znova otevřít SSH terminál
+# Možná bude dobré znova otevřít SSH terminál, nebo Ctrl+D a znovu se přihlásit
 ```
 
 ## LAMP - rozběhnutí
@@ -323,7 +323,13 @@ A do `/etc/resolv.conf` přidat DNS pro LAMP server:
 nameserver 192.168.56.105
 ```
 
-A reboot (po reboot znova nastavit `/etc/resolv.conf`).
+a aby se projevili změny, tak restartujeme síťové rozhraní:
+
+```bash
+systemctl restart networking
+# nebo
+service networking restart
+```
 
 ### Instalace textového prohlížeče
 
@@ -334,6 +340,8 @@ apt install elinks
 elinks www.sli0124.cz
 # Odchází se stisknutím 'q' a potvrzením "Yes"
 ```
+
+Preferovaně bych změnil `/etc/resolv.conf` na DNS 1 server, aby to fungovalo i pro jiné weby. Pokud nezbude jiná možnost, tak použijeme elinks na LAMP serveru.
 
 Teď se nám zobrazí phpinfo defaultní stránky na doméně, paráda!
 

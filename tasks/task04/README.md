@@ -76,7 +76,7 @@ INTERFACESv4="enp0s8"
 
 ```bash
 # Globální nastavení pro všechny sítě
-option domain-name "vsb.cz";
+option domain-name "vsb.cz";  # naše doména, můžete nechat "example.com"
 # DNS servery - POZOR na rozdíl mezi školou a domácí sítí
 option domain-name-servers 158.196.0.53;  # školní DNS (pouze na školní síti!)
 # Pokud konfigurujete doma, použijte: 8.8.8.8, 8.8.4.4 (Google DNS)

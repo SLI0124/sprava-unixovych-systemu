@@ -1,6 +1,6 @@
 # Cvičení 8: Mail server (SMTP/IMAP) a webový klient
 
-Toto cvičení je zaměřeno na konfiguraci **mailového serveru** s protokoly SMTP (odchozí pošta) a IMAP (příchozí pošta), rozšíření DNS záznamů o mailové služby a nastavení webového emailového klienta **Roundcube**.
+Toto cvičení je zaměřeno na konfiguraci **mailového serveru** s protokoly SMTP (odchozí pošta) a IMAP (příchozí pošta), rozšíření DNS záznamů o mailové služby a nastavení webového emailového klienta **Roundcube**. Toto je pokračování předchozího cvičení o SMTP a IMAP serveru, ale díky technickým problémům na cvičení je rozděleno do samostatného úkolu.
 
 ## Co je mailový server
 

@@ -241,6 +241,8 @@ _http._tcp.www IN      SRV     1 2 80  www1.sli0124.cz. ; _http sluzba, _tcp pro
 *._tcp         IN      SRV     0 0 0   .  ;ostatní služby nejsou podporovány
 ```
 
+Můžeme si všimnout, že jeden A záznam je jiný, tedy hned ten první: `sli0124.cz.    IN      A 192.168.56.105` - to je hlavní záznam, když někdo napíše do prohlížeče `sli0124.cz`, tak se dostane na IP adresu. Ostatní záznamy jsou pro různé služby, které můžeme využít skrze virtuální webservery, mailové servery atd.
+
 ### Konfigurace v named.conf.local
 
 Do `/etc/bind/named.conf.local` je nutné uvést odkaz na zónový soubor:
